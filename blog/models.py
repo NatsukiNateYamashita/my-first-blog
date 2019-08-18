@@ -17,3 +17,4 @@ class Post(models.Model): #models.Model はポストがDjango Modelだという�
 
     def __str__(self):
         return self.title
+        
