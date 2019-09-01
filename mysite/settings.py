@@ -31,13 +31,17 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'jet',
+    'jet.dashboard',
+    'django.contrib.admin',
+    'tinymce',
+
 ]
 
 MIDDLEWARE = [
@@ -120,3 +124,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+LOGIN_REDIRECT_URL = '/'
+
+
+JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE = '/Users/natsuki/djangogirls/djangojet-googleanalytics/client_secrets.json'
+JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'

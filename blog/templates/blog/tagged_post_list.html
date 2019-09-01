@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+  <hr>
+  <div><h1 class="font-weight-bold">BLOG</h1></div>
+  {% for post in posts %}
+    <div class="post">
+      <div class="card mb-3">
+        <div class="row no-gutters">
+<!-- top-image -->
+          <div class="col-4">
+            <a href="{% url 'post_detail' pk=post.pk %}">
+              <img class="img-fluid" alt="Responsive image" src="{{ post.main_image.url }}"/>
+            </a>
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+<!-- title -->
+              <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
+<!-- text -->
+              <p class="card-text">{% autoescape off %}{{ post.text|slice:":50" }}{% endautoescape %}</p>
+<!-- tag -->
+              {% for tag in post.tags.all%}
+                <small><button type="button" class="btn btn-outline-secondary"><i class="fas fa-tag"></i><a href="{% url 'tagged_post_list' tag=tag.slug %}"> {{tag.name}}</a></button></small><br>
+              {% endfor%}
+<!-- comment -->
+              {% if user.is_authenticated %}
+                <small>ALL Comments: {{ post.comments.count }}</small>
+              {% endif %}
+              <small class="text-muted">Comments: {{ post.approved_comments.count }}</small><br>
+              <small class="text-muted">{{ post.published_date }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  <!-------------------- edit button -------------------->
+  {% include 'blog/pagenation.html' %}
+{% endblock %}
+
+{% block side-content %}
+  {% include 'blog/side_tag_list.html' %}
+{% endblock %}

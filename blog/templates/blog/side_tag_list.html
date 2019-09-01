@@ -1,0 +1,10 @@
+<hr>
+<div class="list-group mt-5">
+
+  <a class="list-group-item text-white bg-dark">BLOG Tag</a>
+  {% for tag in tags %}
+  <a class="list-group-item list-group-item-action list-group-item-light" href="{% url 'tagged_post_list' tag=tag.slug %}">
+      {{ tag.name }}
+  </a>
+  {% endfor %}
+</div><!-- タグ一覧終了 -->
