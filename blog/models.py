@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from tinymce import HTMLField
+from tinymce.models import HTMLField
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
@@ -54,3 +54,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class MyModel(models.Model):
+    content = HTMLField()
